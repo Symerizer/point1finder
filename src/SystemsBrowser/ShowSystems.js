@@ -4,23 +4,30 @@ class ShowSystems extends Component {
     constructor(){
         super();
         this.state ={
-            rawdata: require('../evedata/point1.json')
+            rawdata: require('../evedata/point1.json'),
+            systems: null
         }
     }
 
-    loadSystems = () => {
-        let systemsMap = this.state.rawdata.point1.filter(systemName => systemName["region"] === this.props.selectedRegion);
+    loadSystems = (nextProps) => {
+        let systemsMap = this.state.rawdata.point1.filter(systemName => systemName["region"] === nextProps.selectedRegion);
+        this.setState({systems: systemsMap});
         console.log(systemsMap)
     };
 
-    componentDidUpdate(){
-        this.loadSystems();
+    componentWillReceiveProps(nextProps){
+        this.loadSystems(nextProps);
     };
 
     render(){
         return(
             <div>
                 <h3>{this.props.selectedRegion}</h3>
+                <div className="row">
+                    <div className="col-md-12">
+
+                    </div>
+                </div>
             </div>
         )
     }
