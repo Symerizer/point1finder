@@ -6,6 +6,7 @@ class ShowRegions extends Component {
     constructor(){
         super();
         this.state ={
+            rawdata: require('../evedata/point1.json'),
             regions: null,
             selectedRegion: null
         }
@@ -17,8 +18,7 @@ class ShowRegions extends Component {
     };
 
     loadRegions = () => {
-        const rawdata = require('../evedata/point1.json');
-        let regionsMap = rawdata.point1.map(regionName => regionName["region"]);
+        let regionsMap = this.state.rawdata.point1.map(regionName => regionName["region"]);
         let uniqueRegions = [...new Set(regionsMap)];
         this.setState({regions: uniqueRegions});
     };
